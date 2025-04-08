@@ -28,7 +28,7 @@ const ShoppingCartProvider = ({ children }) => {
     console.log(getProductDetails);
     let cpyExistingCartItems = [...cartItems];
     const findIndexOfCurrentItem = cpyExistingCartItems.findIndex(
-      (cartItems) => cartItems.id === getProductDetails.id
+      (cartItem) => cartItem.id === getProductDetails.id
     );
     console.log(findIndexOfCurrentItem);
     if (findIndexOfCurrentItem === -1) {
@@ -39,12 +39,41 @@ const ShoppingCartProvider = ({ children }) => {
       });
     } else {
       console.log("its comming here");
+      cpyExistingCartItems[findIndexOfCurrentItem] = {
+        ...cpyExistingCartItems[findIndexOfCurrentItem],
+        quantity: cpyExistingCartItems[findIndexOfCurrentItem].quantity + 1,
+        totalPrice:
+          (cpyExistingCartItems[findIndexOfCurrentItem].quantity + 1) *
+          cpyExistingCartItems[findIndexOfCurrentItem].price,
+      };
     }
     console.log(cpyExistingCartItems, "cpyExistingCartItems");
     setCartItems(cpyExistingCartItems);
     localStorage.setItem("cartItems", JSON.stringify(cpyExistingCartItems));
     navigate("/cart");
   }
+
+  function handleRemoveFromCart(getProductDetails, isFullyRemoveFromCart) {
+    let cpyExistingCartItems = [...cartItems];
+    const findIndexOfCurrentCartItems = cpyExistingCartItems.findIndex(
+      (item) => item.id === getProductDetails.id
+    );
+    if (isFullyRemoveFromCart) {
+      cpyExistingCartItems.splice(findIndexOfCurrentCartItems, 1);
+    } else {
+      cpyExistingCartItems[findIndexOfCurrentCartItems] = {
+        ...cpyExistingCartItems[findIndexOfCurrentCartItems],
+        quantity:
+          cpyExistingCartItems[findIndexOfCurrentCartItems].quantity - 1,
+        totalPrice:
+          (cpyExistingCartItems[findIndexOfCurrentCartItems].quantity - 1) *
+          cpyExistingCartItems[findIndexOfCurrentCartItems].price,
+      };
+    }
+    localStorage.setItem("cartItems", JSON.stringify(cpyExistingCartItems));
+    setCartItems(cpyExistingCartItems);
+  }
+
   useEffect(() => {
     handelCartApi();
     setCartItems(JSON.parse(localStorage.getItem("cartItems")));
@@ -61,6 +90,7 @@ const ShoppingCartProvider = ({ children }) => {
         setProductDetails,
         handleAddToCart,
         cartItems,
+        handleRemoveFromCart,
       }}
     >
       {children}
