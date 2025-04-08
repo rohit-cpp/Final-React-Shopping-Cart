@@ -90,7 +90,7 @@ const CartTile = ({ singleCartItem }) => {
                 </div>
                 <div className="text-end md:order-4 md:w-32">
                   <p className="text-base font-bold text-gray-900 dark:text-white">
-                    ${singleCartItem?.totalPrice}
+                    ${singleCartItem?.totalPrice.toFixed(2)}
                   </p>
                 </div>
               </div>

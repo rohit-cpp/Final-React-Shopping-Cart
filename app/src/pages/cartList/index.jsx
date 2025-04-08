@@ -40,8 +40,12 @@ const CartListPage = () => {
                           <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
                             Original price
                           </dt>
+
                           <dd className="text-base font-medium text-gray-900 dark:text-white">
-                            $7,592.00
+                            $
+                            {cartItems
+                              .reduce((acc, curr) => acc + curr.totalPrice, 0)
+                              .toFixed(2)}
                           </dd>
                         </dl>
 
@@ -50,7 +54,10 @@ const CartListPage = () => {
                             Savings
                           </dt>
                           <dd className="text-base font-medium text-green-600">
-                            -$299.00
+                            -$2
+                            {/* {cartItems
+                              .reduce((acc, curr) => acc + curr.totalPrice, 2)
+                              .toFixed(2)} */}
                           </dd>
                         </dl>
 
@@ -59,7 +66,7 @@ const CartListPage = () => {
                             Store Pickup
                           </dt>
                           <dd className="text-base font-medium text-gray-900 dark:text-white">
-                            $99
+                            $20
                           </dd>
                         </dl>
 
@@ -68,7 +75,7 @@ const CartListPage = () => {
                             Tax
                           </dt>
                           <dd className="text-base font-medium text-gray-900 dark:text-white">
-                            $799
+                            $80
                           </dd>
                         </dl>
                       </div>
@@ -78,7 +85,13 @@ const CartListPage = () => {
                           Total
                         </dt>
                         <dd className="text-base font-bold text-gray-900 dark:text-white">
-                          $8,191.00
+                          $
+                          {cartItems
+                            .reduce(
+                              (acc, curr) => acc + curr.totalPrice,
+                              20 + 80
+                            )
+                            .toFixed(2)}
                         </dd>
                       </dl>
                     </div>
