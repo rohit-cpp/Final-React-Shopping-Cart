@@ -58,8 +58,14 @@ const ProductDetailsPage = () => {
       </h1>
     );
   return (
-    <section className="text-gray-600 body-font overflow-hidden bg-[#EBE8DB]">
-      <div className="container px-5 py-20 mx-auto">
+    <section className="text-gray-600 body-font p-4 overflow-hidden bg-[#EBE8DB] ">
+      <div className="text-center p-4 border rounded-2xl bg-[#854836] mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-yellow-500">
+        {" "}
+        Product details
+      </div>
+
+      <div className="container px-5 py-5 mx-auto ">
+        {" "}
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <div>
             <div>
