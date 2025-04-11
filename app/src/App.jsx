@@ -8,7 +8,7 @@ function App() {
   return (
     <Fragment>
       <Routes>
-        <Route path="/products" element={<ProductListPage />} />
+        <Route path="/" element={<ProductListPage />} />
         <Route path="/product-details/:id" element={<ProductDetailsPage />} />
         <Route path="/cart" element={<CartListPage />} />
       </Routes>
